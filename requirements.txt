@@ -1,0 +1,6 @@
+transformers
+matplotlib
+scikit-learn
+gradio
+imageio
+pillow
