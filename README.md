@@ -150,6 +150,6 @@ Potential directions include:
 
 MIT
 
-##Last edited
+## Last edited
 
 2026-05-03
