@@ -10,6 +10,8 @@ Current interfaces to large language models expose internal state through fragme
 
 Here we present a minimal prototype for representing model state as a **compact visual glyph**, designed to leverage human ability to interpret continuous, multi-signal visual patterns pre-attentively. The glyph encodes hidden-state structure, attention, uncertainty, and temporal evolution in a single consistent representation.
 
+In addition, we include a **contrastive prototype** that maps the same underlying signals onto a simple biomorphic structure. This serves as a *cautionary demonstration* of how identical model-derived quantities can be interpreted very differently depending on representation.
+
 This repository is not a finalized method, but a **working demonstration of a design principle**: model state should be *readable at a glance*, not only inspected numerically.
 
 ---
@@ -50,6 +52,65 @@ These elements are not independent plots. They are **co-embedded into a single v
 
 ---
 
+## Contrastive Prototype: Biomorphic Mapping
+
+In addition to the abstract glyph, this repository includes an experimental prototype that maps the same model-derived signals onto a simple **tardigrade-like biomorph**.
+
+Example mappings:
+
+| Signal      | Biomorphic encoding            |
+| ----------- | ------------------------------ |
+| Entropy     | Leg twitch / movement speed    |
+| Uncertainty | Contraction toward “tun” state |
+| Confidence  | Posture extension / openness   |
+| Load/Stress | Vibration amplitude            |
+| Attention   | Proboscis extension            |
+| Stability   | Rotation smoothness vs wobble  |
+
+Importantly:
+
+> **No additional information is introduced. Only the representation changes.**
+
+---
+
+## Cautionary Observation
+
+A key outcome of this prototype is that:
+
+> **minimal structural and dynamical cues are sufficient to induce perception of agency**
+
+Even without:
+
+* eyes
+* facial features
+* explicit emotional signals
+
+observers tend to interpret the biomorph in terms of:
+
+* hesitation
+* confidence
+* attention
+* intent
+
+This occurs despite the fact that all behavior is derived from simple scalar signals (e.g. entropy, logits, attention weights).
+
+---
+
+## Interpretation Drift
+
+The abstract glyph and biomorphic representation encode the same data but produce qualitatively different interpretations:
+
+| Representation | Typical interpretation  |
+| -------------- | ----------------------- |
+| Glyph          | Analytical, statistical |
+| Biomorph       | Intentional, agent-like |
+
+This demonstrates a broader point:
+
+> **the interface determines the narrative, not just the data**
+
+---
+
 ## Implementation
 
 This prototype uses a small causal model (default: DistilGPT2) and performs the following steps for a given prompt:
@@ -61,14 +122,18 @@ This prototype uses a small causal model (default: DistilGPT2) and performs the 
    * attention weights
    * next-token probability distribution
 3. Fit a shared PCA projection across all steps for that prompt
-4. Render a glyph per step with:
+4. Derive scalar signals:
 
-   * attention-weighted density field over projected states
-   * trajectory of the current token in latent space
-   * entropy-scaled uncertainty ring
-   * compact radial representation of top-k probabilities
+   * entropy (uncertainty proxy)
+   * logit margin (confidence proxy)
+   * attention concentration
+   * latent trajectory stability
+5. Render:
 
-An interactive interface (via Gradio) allows inspection of individual steps and full trajectories.
+   * an abstract glyph
+   * a biomorphic mapping of the same signals
+
+An interactive interface (via Gradio) allows inspection of both representations.
 
 ---
 
@@ -83,13 +148,16 @@ This prototype follows a small number of explicit constraints:
   Signals are represented as continuous visual variables (position, density, size), not discrete labels.
 
 * **Consistency**
-  The same mapping is used across all steps, enabling learning over time.
+  The same mapping is used across all steps.
 
 * **Pre-attentive readability**
-  The glyph is intended to be interpretable without conscious parsing of metrics.
+  The glyph is intended to be interpretable without explicit metric parsing.
 
 * **Minimal decoration**
   Visual elements are tied directly to model-derived quantities.
+
+* **Controlled anthropomorphism (biomorphic prototype)**
+  The biomorph is deliberately minimal and avoids explicit features (e.g. eyes), while still exposing perceptual biases.
 
 ---
 
@@ -104,10 +172,13 @@ This is an exploratory prototype and has several important limitations:
   The mapping from latent space geometry to semantic meaning is not guaranteed.
 
 * **No user validation**
-  The claim of improved readability is not empirically tested.
+  Claims about readability and interpretation are not empirically tested.
 
 * **Model scale**
   The default model is small; larger models may exhibit clearer structure.
+
+* **Behavioral ambiguity**
+  The biomorphic representation may induce interpretations not grounded in model internals.
 
 ---
 
@@ -116,12 +187,12 @@ This is an exploratory prototype and has several important limitations:
 This repository is not intended as a finished method or framework. Instead, it serves as:
 
 * a **concrete example** of compressing LLM state into a single visual representation
-* a **starting point** for alternative encodings
-* a **public disclosure** of the underlying design idea
+* a **contrastive demonstration** of how representation shapes interpretation
+* a **public disclosure** of both the design idea and its potential pitfalls
 
-The specific visual choices are not canonical. The core contribution is the principle:
+The core contribution is the principle:
 
-> *Model state can be exposed as a compact, learnable visual grammar rather than a collection of explicit metrics.*
+> *Model state can be exposed as a compact, learnable visual grammar — but representation choices strongly influence how that state is perceived.*
 
 ---
 
@@ -129,7 +200,7 @@ The specific visual choices are not canonical. The core contribution is the prin
 
 ```bash
 pip install -r requirements.txt
-python llm_state_icon.py
+python llm_biomorph_app.py
 ```
 
 ---
@@ -141,8 +212,9 @@ Potential directions include:
 * alternative projections (e.g. UMAP, learned embeddings)
 * systematic evaluation of interpretability
 * comparison with traditional dashboards
-* adaptation to larger models and different architectures
+* controlled studies of perception and misinterpretation
 * exploration of alternative glyph grammars
+* formal analysis of representation-induced bias
 
 ---
 
@@ -152,4 +224,4 @@ MIT
 
 ## Last edited
 
-2026-05-03
+2026-05-05
