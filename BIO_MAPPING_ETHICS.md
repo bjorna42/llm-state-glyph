@@ -211,5 +211,13 @@ No biomorphic implementation is provided in this repository at this time.
 
 ---
 
-## 10. Defensive Disclosure: Mapping Neural Entropy to Biomimetic Morphology
-This project establishes prior art for a biomimetic diagnostic interface that translates the internal stochastic states of a Large Language Model (LLM)—including but not limited to token probability distributions ($P(w_t)$), attention weight variances, and context-window saturation—into dynamic, organic visual morphologies. Unlike static anthropomorphic avatars or "AI Pets" designed for emotional engagement, this system utilizes preattentive processing of movement and biological rhythm (e.g., oscillation, surface tension, and pulsatile frequency) to communicate model certainty and computational load. By mapping mathematical entropy to "kinesthetic textures," we define a method for real-time transparency where the user can intuitively sense model "agitation" (low-probability branching) or "stasis" (high-certainty generation) through biological metaphors without the need for symbolic or textual status indicators. This methodology is presented as a clinical, open-source standard for Affective Interpretability, specifically intended to prevent the proprietary monopolization of "agentic state" visualization.
+## 10. Additional Note on Biomimetic Approaches
+This document also serves as an early public exploration of mapping LLM internal signals (such as entropy, attention focus, and hidden state trajectories) to dynamic, biomorphic, or creature-like visual systems.
+While such mappings are conceptually straightforward — and build directly on long-established ideas in visualization, human perception, and affective computing — they introduce significantly stronger risks of anthropomorphism and misinterpretation compared to abstract geometric glyphs.
+By publishing this conceptual outline and the accompanying ethical considerations, the goal is not to claim ownership of these ideas, but rather to:
+
+Make it clear that these directions are relatively obvious extensions of existing visualization techniques.
+Highlight the non-trivial psychological and ethical risks involved before they become widespread in commercial products.
+Encourage careful, restrained design if anyone chooses to explore this path.
+
+No concrete biomorphic implementation is included in this repository. The provided LLM State Glyph serves as the reference implementation precisely because it stays within safer, non-anthropomorphic bounds.
